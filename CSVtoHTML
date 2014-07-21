@@ -1,0 +1,130 @@
+web.xml
+-------
+
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <servlet>
+        <servlet-name>NewServlet</servlet-name>
+        <servlet-class>csvtohtml.NewServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>NewServlet</servlet-name>
+        <url-pattern>/NewServlet</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>
+
+
+Servlet.java
+------------
+
+package csvtohtml;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Scanner;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+public class NewServlet extends HttpServlet {
+
+    
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        try {
+            Scanner in = new Scanner(new File("E:\\Backup\\NetBeansProjects\\Data - Sheet1.csv"));
+            in.useDelimiter(",");
+        
+        
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>CSV to HTML</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<table border=\"1\">");
+            while(in.hasNext())
+            {
+               
+                out.print("<tr>"+"<td>"+in.next()+"</td>"+"<td>"+in.next()+"</td>"+"<td>"+in.next()+"</td>"+"<td>"+in.next()+"</td>"
+                        +"<td>"+in.next()+"</td>"+"<td>"+in.next()+"</td>"+"<td>"+in.next()+"</td>"+"</tr>");
+                out.println();
+            }
+            out.println("</table>");
+            out.println("</body>");
+            out.println("</html>");
+        } finally {            
+            out.close();
+        }
+    }
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP
+     * <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Handles the HTTP
+     * <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+}
+
+
+README
+------
+
+CSV to HTML Program version 1.0 20/07/2014
+ 
+GENERAL USAGE NOTES
+-------------------
+- Cannot be compiled and run without having Java Development Kit(JDK) installed in the computer.
+- Cannot be run without Server software installed.
+ 
+Installation of JDK:
+
+- While installing JDK, install Java Runtime Environment(JRE) also.
+ 
+CSV to HTML Program can be reached at:
+
+E-mail : rajaashs@gmail.com

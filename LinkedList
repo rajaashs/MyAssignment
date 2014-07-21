@@ -1,0 +1,78 @@
+LinkedList.java
+---------------
+
+package MyLinkedList;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Scanner;
+
+
+public class Main {
+
+   static LinkedList<Integer> list = new LinkedList<>();
+    public static void main(String[] args) {
+        
+        
+        Scanner in = new Scanner(System.in);
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        list.add(5);
+        list.add(6);
+        list.add(7);
+        list.add(8);
+       
+        System.out.println("Enter the index of the element to be deleted in the Linked List:");
+       
+        try
+        {
+        int index = in.nextInt();
+        delete(index);
+        
+        }
+        catch(IndexOutOfBoundsException e)
+        {
+            System.out.println("Entered an Incorrect Index " + e.getMessage());
+        }
+        System.out.println("Traversing the List after deleting a node in the middle");
+        traverse(list, 0);
+        
+    }
+    
+    public static void delete(int index)
+    {
+      list.remove(index);
+    }
+    
+    public static void traverse(LinkedList<Integer> list, int indexes)
+    {
+        if(list.size() == 0)
+            return ;
+       
+          
+        if(indexes < list.size() )
+        {
+            System.out.print(list.get(indexes) + ",");
+            traverse(list, indexes+1);
+        }
+        return;
+    }
+}
+
+
+README
+------
+
+LinkedList Program version 1.0 20/07/2014
+
+GENERAL USAGE NOTES
+-------------------
+- Cannot be compiled and run without having Java Development Kit(JDK) installed in the computer.
+
+Installation of JDK:
+- While installing JDK, install Java Runtime Environment(JRE) also.
+
+LinkedList Program can be reached at:
+E-mail : rajaashs@gmail.com
